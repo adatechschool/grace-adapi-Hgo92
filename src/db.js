@@ -22,3 +22,4 @@ console.log("🟢 Connected to the database");
 console.error("🔴 Error connecting to the database", err);
 });
 export default pool;
+
