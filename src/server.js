@@ -19,46 +19,51 @@ res.json(rows);});
 
 // Créer une route GET pour une ressource
 
-app.get("/res1", async function (req, res) {
-  const { rows } = await pool.query("SELECT * FROM resources WHERE id = 1");
+app.get("/res/:id", async function (req, res) {
+    const { id } = req.params;
+    const { rows } = await pool.query("SELECT * FROM resources WHERE id = $1", [id]);
 res.json(rows);});
 
 // Créer une route POST pour les ressources
 
-app.post("/ajout", (req, res) => {
-    pool.query("INSERT INTO resources (title, url, description, theme_id, type, is_ada) VALUES ('Introduction à Ruby', 'https://ruby.dev', 'Guide pour apprendre Ruby', 1, 'guide', false)");
+app.post("/ajout", async function (req, res) {
+    await pool.query("INSERT INTO resources (title, url, description, theme_id, type, is_ada) VALUES ('Introduction à ADA', 'https://ada.dev', 'Guide pour apprendre Ada', 1, 'guide', false)");
 res.json('Ajout effectué !')
 })
 
 // Créer une route PUT pour les ressources
 
-app.put("/put", (req, res) => {
-    pool.query("INSERT INTO resources (title, url, description, theme_id, type, is_ada) VALUES ('Introduction à Cobol', 'https://cobol.dev', 'Guide pour apprendre Cobol', 1, 'guide', false)");
-res.json('Ajout (put) effectué !')
+app.put("/put", async function (req, res) {
+   await  pool.query("UPDATE resources SET title = 'Intro Ada' WHERE id=9");
+res.json('Modification effectuée !')
 })
 
 // Créer une route DELETE pour les ressources
 
-
-app.delete("/deleteRes", (req, res) => {
-    pool.query("DROP TABLE resources CASCADE")
-res.json('La table "resources" a été supprimée')
+app.delete("/deleteRes/:id", async function (req, res) {
+    const { id } = req.params;
+    await pool.query("DELETE FROM resources_skills WHERE resource_id = $1", [id]);
+    await pool.query("DELETE FROM resources WHERE id=$1", [id])
+res.json(`L'élément ${id[0]} a été supprimé de resources`)
 })
 
 // Créer les mêmes routes DELETE pour thèmes / skills / resources_skills
 
-app.delete("/deleteThemes", (req, res) => {
-    pool.query("DROP TABLE themes CASCADE")
-res.json('La table "themes" a été supprimée')
+app.delete("/deleteThemes/:id", async function (req, res) {
+    const { id } = req.params;
+    await pool.query("DELETE FROM themes WHERE id =$1", [id])
+res.json(`L'élément ${id[0]} a été supprimé de themes`)
 })
 
-app.delete("/deleteSkills", (req, res) => {
-    pool.query("DROP TABLE skills CASCADE")
-res.json('La table "skills" a été supprimée')
+app.delete("/deleteSkills/:id", (req, res) => {
+    const { id } = req.params;
+    pool.query("DELETE FROM skills WHERE id =$1", [id])
+res.json(`L'élément ${id[0]} a été supprimé de skills`)
 })
 
-app.delete("/deleteResSkils", (req, res) => {
-    pool.query("DROP TABLE resources_skills CASCADE")
-res.json('La table "resources_skills" a été supprimée')
+app.delete("/deleteResSkils/:id", (req, res) => {
+    const { id } = req.params;
+    pool.query("DELETE FROM resources_skills WHERE id =$1", [id])
+res.json(`L'élément ${id[0]} a été supprimé de resources_skills`)
 })
 

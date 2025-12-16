@@ -1,0 +1,70 @@
+{
+"openapi": "3.0.0",
+"info": {
+"title": "My API",
+"version": "1.0.0"
+},
+"paths": {
+    "/resources": {
+        "get": {
+        "summary": "List all resources",
+        "responses": {
+        "200": {
+        "description": "OK"
+    }
+}}}, 
+    "/res1": {
+        "get": {
+        "summary": "List the first resource",
+        "responses": {
+        "200": {
+        "description": "OK"
+    }
+}}},
+    "/ajout": {
+        "post": {
+        "summary": "Add a new resource (with post)",
+        "responses": {
+        "200": {
+        "description": "OK"
+    }
+}}}, 
+    "/put": {
+        "put": {
+        "summary": "Add a new resource (with put)",
+        "responses": {
+        "200": {
+        "description": "OK"
+    }
+} }}, 
+    "/deleteRes": {
+        "delete": {
+        "summary": "Delete the resources table",
+        "responses": {
+        "200": {
+        "description": "OK"
+    }} }}, 
+    "/deleteThemes": {
+        "delete": {
+        "summary": "Delete the themes table",
+        "responses": {
+        "200": {
+        "description": "OK"
+    }} }}, 
+    "/deleteSkills": {
+        "delete": {
+        "summary": "Delete the skills table",
+        "responses": {
+        "200": {
+        "description": "OK"
+    }} }}, 
+    "/deleteResSkills": {
+        "delete": {
+        "summary": "Delete the resources_skills table",
+        "responses": {
+        "200": {
+        "description": "OK"
+    }} }}
+
+}
+} 

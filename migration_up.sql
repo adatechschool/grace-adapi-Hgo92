@@ -30,7 +30,6 @@ CREATE TABLE skills (
 );
 
 CREATE TABLE resources_skills (
-    id SERIAL PRIMARY KEY, 
     resource_id INT REFERENCES resources (id), 
     skill_id INT REFERENCES skills (id)
 );
