@@ -51,19 +51,21 @@ res.json(`L'élément ${id[0]} a été supprimé de resources`)
 
 app.delete("/deleteThemes/:id", async function (req, res) {
     const { id } = req.params;
-    await pool.query("DELETE FROM themes WHERE id =$1", [id])
+    await pool.query("UPDATE resources SET theme_id = null WHERE theme_id=$1", [id]);
+    await pool.query("DELETE FROM themes WHERE id=$1", [id])
 res.json(`L'élément ${id[0]} a été supprimé de themes`)
 })
 
-app.delete("/deleteSkills/:id", (req, res) => {
+app.delete("/deleteSkills/:id", async function (req, res) {
     const { id } = req.params;
-    pool.query("DELETE FROM skills WHERE id =$1", [id])
+    await pool.query("DELETE FROM resources_skills WHERE skill_id = $1", [id]);
+    await pool.query("DELETE FROM skills WHERE id=$1", [id])
 res.json(`L'élément ${id[0]} a été supprimé de skills`)
 })
 
-app.delete("/deleteResSkils/:id", (req, res) => {
+app.delete("/deleteResSkils/:id", async function (req, res) {
     const { id } = req.params;
-    pool.query("DELETE FROM resources_skills WHERE id =$1", [id])
+    await pool.query("DELETE FROM resources_skills WHERE id=$1", [id])
 res.json(`L'élément ${id[0]} a été supprimé de resources_skills`)
 })
 
