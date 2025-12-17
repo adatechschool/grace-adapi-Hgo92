@@ -86,6 +86,8 @@ app.post("/fillProjects", async function (req, res) {
     res.json('Les tables projects, project_skills et project_themes ont été remplies');
 })
 
+// Ajouter les routes correspondantes à la table projets
+
 app.get("/projects", async function (req, res) {
   const { rows } = await pool.query("SELECT * FROM projects");
 res.json(rows);});
@@ -100,6 +102,19 @@ app.post("/add-adaquiz", async function (req, res) {
     await pool.query("INSERT INTO project_skills (project_id, skill_id) VALUES (4,4)");
     await pool.query("INSERT INTO project_themes (project_id, theme_id) VALUES (4,1)");
 res.json('Le projet Adaquiz a été ajouté à la table projects');});
+
+app.put("/put-project/:id", async function (req, res) {
+    const { id } = req.params;
+    const { title } = req.body;
+    await pool.query("UPDATE resources SET title = $1 WHERE id=$2", [title, id]);
+res.json(`Le titre du projet ${id} est maintenant ${title}`);
+})
+
+app.delete("/delete-project/:id", async function (req, res) {
+    const { id } = req.params;
+    await pool.query("DELETE FROM projects WHERE id=$1", [id]);
+res.json(`Le projet ${id} a été supprimé de la table projects`)
+})
 
 // Ajouter une route GET /skills/:id/resources pour récupérer toutes les ressources associées à une compétence donnée
 
