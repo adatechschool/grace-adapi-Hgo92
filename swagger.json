@@ -7,64 +7,71 @@
 "paths": {
     "/resources": {
         "get": {
-        "summary": "List all resources",
-        "responses": {
-        "200": {
-        "description": "OK"
-    }
-}}}, 
-    "/res1": {
+        "summary": "List all resources"
+    }}, 
+    "/res/:id": {
         "get": {
-        "summary": "List the first resource",
-        "responses": {
-        "200": {
-        "description": "OK"
-    }
-}}},
+        "summary": "List the resource asked by id"
+    }},
     "/ajout": {
         "post": {
-        "summary": "Add a new resource (with post)",
-        "responses": {
-        "200": {
-        "description": "OK"
-    }
-}}}, 
+        "summary": "Add a new resource (with post)"
+        }}, 
     "/put": {
         "put": {
-        "summary": "Add a new resource (with put)",
-        "responses": {
-        "200": {
-        "description": "OK"
-    }
-} }}, 
-    "/deleteRes": {
+        "summary": "Modify a resource (with put)"
+    }}, 
+    "/deleteRes/:id": {
         "delete": {
-        "summary": "Delete the resources table",
-        "responses": {
-        "200": {
-        "description": "OK"
-    }} }}, 
-    "/deleteThemes": {
+        "summary": "Delete a resource (by id) from table resources"
+    }}, 
+    "/deleteThemes/:id": {
         "delete": {
-        "summary": "Delete the themes table",
-        "responses": {
-        "200": {
-        "description": "OK"
-    }} }}, 
-    "/deleteSkills": {
+        "summary": "Delete a theme (by id) from the table themes"
+    }}, 
+    "/deleteSkills/:id": {
         "delete": {
-        "summary": "Delete the skills table",
-        "responses": {
-        "200": {
-        "description": "OK"
-    }} }}, 
-    "/deleteResSkills": {
+        "summary": "Delete a skill (by id) from the skills table"
+    }}, 
+    "/deleteResSkills/:id": {
         "delete": {
-        "summary": "Delete the resources_skills table",
-        "responses": {
-        "200": {
-        "description": "OK"
-    }} }}
-
+        "summary": "Delete an element (by id) frome the resources_skills table"
+    }}, 
+    "/projectsUP": {
+        "post": {
+        "summary": "Create the projects table and the linked table with skills and themes"
+    }}, 
+    "/fillProjects": {
+        "post": {
+        "summary": "Fill the projects table with projects Adatabase, Adataviz, ADAPI"
+    }}, 
+    "/projects": {
+        "get": {
+        "summary": "Show elements from projects table"
+    }}, 
+    "/projects/:id": {
+        "get": {
+        "summary": "Show one element (by id) from the projects table"
+    }}, 
+    "/add-adaquiz": {
+        "post": {
+        "summary": "Add the Adaquiz project to the projects table"
+    }}, 
+    "/put-project": {
+        "put": {
+        "summary": "Change the title (via body) of a chosen project (by id)"
+    }},
+    "/delete-project": {
+        "delete": {
+        "summary": "Delete a project (by id) frome the projects table"
+    }},
+    "/skills/:id/resources": {
+        "get": {
+        "summary": "Show every resources corresponding to a skill"
+    }}, 
+    "/themes/:id/resources": {
+        "get": {
+        "summary": "Show every resources corresponding to a theme"
+    }}
 }
 } 
