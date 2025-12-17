@@ -101,3 +101,18 @@ app.post("/add-adaquiz", async function (req, res) {
     await pool.query("INSERT INTO project_themes (project_id, theme_id) VALUES (4,1)");
 res.json('Le projet Adaquiz a été ajouté à la table projects');});
 
+// Ajouter une route GET /skills/:id/resources pour récupérer toutes les ressources associées à une compétence donnée
+
+app.get("/skills/:id/resources", async function (req, res) {
+    const { id } = req.params;
+    const { rows } = await pool.query("SELECT * from resources JOIN resources_skills ON resources.id = resources_skills.resource_id JOIN skills ON skills.id = resources_skills.skill_id WHERE skills.id = $1", [id]);
+res.json(rows)
+});
+
+// Ajouter une route GET /themes/:id/resources pour récupérer toutes les ressources associées à un thème donné.
+
+app.get("/themes/:id/resources", async function (req, res) {
+    const { id } = req.params;
+    const { rows } = await pool.query("SELECT * from resources WHERE theme_id = $1", [id]);
+res.json(rows)
+});
