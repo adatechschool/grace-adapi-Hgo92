@@ -9,39 +9,39 @@
         "get": {
         "summary": "List all resources"
     }}, 
-    "/res/:id": {
+    "/resources/:id": {
         "get": {
         "summary": "List the resource asked by id"
     }},
-    "/ajout": {
+    "resources/ajout": {
         "post": {
         "summary": "Add a new resource (with post)"
         }}, 
-    "/put": {
+    "/resources/put": {
         "put": {
         "summary": "Modify a resource (with put)"
     }}, 
-    "/deleteRes/:id": {
+    "/resources/delete/:id": {
         "delete": {
         "summary": "Delete a resource (by id) from table resources"
     }}, 
-    "/deleteThemes/:id": {
+    "/themes/delete/:id": {
         "delete": {
         "summary": "Delete a theme (by id) from the table themes"
     }}, 
-    "/deleteSkills/:id": {
+    "/skills/delete/:id": {
         "delete": {
         "summary": "Delete a skill (by id) from the skills table"
     }}, 
-    "/deleteResSkills/:id": {
+    "/resources-skills/delete/:id": {
         "delete": {
         "summary": "Delete an element (by id) frome the resources_skills table"
     }}, 
-    "/projectsUP": {
+    "/projects/UP": {
         "post": {
         "summary": "Create the projects table and the linked table with skills and themes"
     }}, 
-    "/fillProjects": {
+    "/projects/fill": {
         "post": {
         "summary": "Fill the projects table with projects Adatabase, Adataviz, ADAPI"
     }}, 
@@ -53,15 +53,15 @@
         "get": {
         "summary": "Show one element (by id) from the projects table"
     }}, 
-    "/add-adaquiz": {
+    "/projects/add-adaquiz": {
         "post": {
         "summary": "Add the Adaquiz project to the projects table"
     }}, 
-    "/put-project": {
+    "/projects/put": {
         "put": {
         "summary": "Change the title (via body) of a chosen project (by id)"
     }},
-    "/delete-project": {
+    "/projects/delete": {
         "delete": {
         "summary": "Delete a project (by id) frome the projects table"
     }},
